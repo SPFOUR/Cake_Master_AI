@@ -26,7 +26,7 @@ final_project/
 ``` 
 
 ## Project Architecture
-
+ !![My Screenshot](.png)
               
 
 The project's architecture is a classic modular RAG pipeline with four independent stages.
