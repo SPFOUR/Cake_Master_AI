@@ -50,3 +50,20 @@ Frondend display (app.py using Streamlit)
 - Documents get categorize into recipes in a txt format and articles in a pdf format for ease of chunking as most recipes can be retrieved through html prints. Pdf files are trickier and requires pypdf tool.
 - When Gemini reaches its rate limits, the system will initiate a retry procedure for 3 attempts before displaying an error message.
 - If the user asked a question that is not cake related, the agent will tell the user that it has no information about the query.
+
+## Evaluations
+
+-The engine is strictly bounded by the source data that it was trained on, thus giving it a static knowledge basis.
+-The engine relies of app.py as the primary script, which makes the system have tight coupling. 
+-The architecture relies on a linear single pass pipeline. (Query → Vector Search → LLM Prompt)
+-The system can also suffer from context fragmentation as the chunking process separates the documents into sections. For example, if a recipe is retrieved, instructions might get separated from their corresponding important ingredient lists across different vectors, resulting in incomplete context. 
+-Using larger chunk numbers improves the search engine's result context.
+
+## Limitations
+
+-The LLM had a hard time loading and handling heavy pdf files.
+-Answers that should return a result ends with a no answer available response.
+-Gemini 2.5 Flash has a token limit.
+-Questions have to be very specific in order to retrieve the exact answer. 
+  Ex: 'Give a cake that starts with A' 
+will yield a no answer found response.
